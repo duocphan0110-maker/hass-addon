@@ -484,7 +484,9 @@
             
                 // Lọc dữ liệu
                 const filteredData = dailyData.filter(day => {
-                    const dayDate = new Date(day.Ngày.split('-').reverse().join('-'));
+                    // Làm sạch chuỗi ngày, loại bỏ phần "đến ..." nếu có
+                    const cleanDateStr = day.Ngày.split('đến')[0].trim().split('-').reverse().join('-');
+                    const dayDate = new Date(cleanDateStr);
                     return dayDate >= startDate && dayDate <= endDate && day["Điện tiêu thụ (kWh)"] > 0;
                 });
             
